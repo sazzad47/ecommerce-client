@@ -1,4 +1,4 @@
-export const BASE_API = "http://localhost:5000";
+export const BASE_API = "https://ecommerce-server-s.up.railway.app";
 export const PAGINATION_LIMIT = 5;
 export const colorsPalette = {
   1: "#FFFFFF",
