@@ -3,6 +3,8 @@ import {
   PersonAddAlt,
   ShoppingCart,
   Person,
+  Search,
+  Close,
 } from "@mui/icons-material";
 import React from "react";
 import { colorsPalette } from "../../constants";
@@ -14,6 +16,10 @@ import Dropdown from "rc-dropdown";
 import Menu, { Item as DropItem } from "rc-menu";
 import { Logout } from "../../helpers/functions";
 import { CartHooks } from "../../Features";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useState } from "react";
+import { IconButton } from "@mui/material";
+
 const Logo = styled.h3`
   font-weight: bold;
   color: white;
@@ -25,13 +31,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
-  ${mobile({
-    flexDirection: "column",
-  })}
-
-  ${tablet({
-    flexDirection: "column",
-  })}
+  min-height: 4rem;
 `;
 const MenuItem = styled.div`
   font-size: 14px;
@@ -75,17 +75,23 @@ const Left = styled.div`
   align-items: center;
   display: flex;
   ${mobile({
-    justifyContent: "center",
+    justifyContent: "start",
   })}
 
   ${tablet({
-    justifyContent: "center",
+    justifyContent: "start",
   })}
 `;
 const Center = styled.div`
   flex: 6;
   align-items: center;
   display: flex;
+  ${mobile({
+    display: "none",
+  })}
+  ${tablet({
+    display: "none",
+  })}
 `;
 const NumberOfCarts = styled.div`
   position: absolute;
@@ -102,15 +108,6 @@ const Right = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  ${mobile({
-    justifyContent: "center",
-    padding: "10px",
-  })}
-
-  ${tablet({
-    justifyContent: "center",
-    padding: "10px",
-  })}
 `;
 const iconsLink = {
   color: "white",
@@ -121,6 +118,12 @@ const Header = () => {
   const { useGetCartItems } = CartHooks;
   const { quantity } = useGetCartItems();
 
+  const isMobile = useMediaQuery('(max-width:680px)');
+  const isTablet = useMediaQuery('(max-width:1080px)');
+  const isLaptop = useMediaQuery('(max-width:1550px)');
+
+  const [isSearch, setIsSearch] = useState(false);
+  
   const menu = (
     <Menu
       style={{ width: "120px" }}
@@ -149,11 +152,11 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <Left>
+        {!isSearch && <Left>
           <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-            <Logo>ECOMMERCE.</Logo>
+            <Logo>{isMobile? "ECOM": "ECOMMERCE"}</Logo>
           </Link>
-        </Left>
+        </Left>}
         <Center className="j-center">
           <SearchContainer>
             <form action="/search" className="w-100">
@@ -161,16 +164,39 @@ const Header = () => {
             </form>
           </SearchContainer>
         </Center>
-        <Right>
+        {isSearch &&
+        <>
+        
+          <SearchContainer>
+          <form action="/search" className="w-100">
+            <Input placeholder="Search by product name" name="name" />
+          </form>
+        </SearchContainer>
+          <IconButton onClick={()=> setIsSearch(false)}>
+            <Close sx={{color: "white"}}/>
+          </IconButton>
+        </>
+        }
+        {!isSearch && <Right>
           {!logged ? (
             <>
-              <MenuItem>
+            {isTablet && <MenuItem 
+             onClick={()=> setIsSearch(true)}
+            >
+                <Search
+                  sx={{
+                    color: "white",
+                    marginRight: "10px",
+                    marginLeft: "10px",
+                  }}
+                />
+              </MenuItem>}
+               <MenuItem>
                 <Link
                   to="/register"
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                  REGISTER
-                </Link>
+                 {!isTablet && "REGISTER" }
                 <PersonAddAlt
                   sx={{
                     color: "white",
@@ -178,14 +204,14 @@ const Header = () => {
                     marginLeft: "10px",
                   }}
                 />
+                </Link>
               </MenuItem>
               <MenuItem>
                 <Link
                   to="/login"
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                  LOGIN
-                </Link>
+                   {!isTablet && "LOGIN"}
                 <PersonOutline
                   sx={{
                     color: "white",
@@ -193,6 +219,7 @@ const Header = () => {
                     marginLeft: "10px",
                   }}
                 />
+                </Link>
               </MenuItem>
             </>
           ) : (
@@ -217,7 +244,7 @@ const Header = () => {
               </Dropdown>
             </MenuItem>
           )}
-        </Right>
+        </Right>}
       </Wrapper>
     </Container>
   );
