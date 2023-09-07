@@ -5,6 +5,7 @@ import {
   Person,
   Search,
   Close,
+  Clear,
 } from "@mui/icons-material";
 import React from "react";
 import { colorsPalette } from "../../constants";
@@ -18,7 +19,7 @@ import { Logout } from "../../helpers/functions";
 import { CartHooks } from "../../Features";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useState } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 
 const Logo = styled.h3`
   font-weight: bold;
@@ -121,7 +122,8 @@ const Header = () => {
   const isMobile = useMediaQuery('(max-width:680px)');
   const isTablet = useMediaQuery('(max-width:1080px)');
   const isLaptop = useMediaQuery('(max-width:1550px)');
-
+  
+  const [searchTerm, setSearchTerm] = useState("");
   const [isSearch, setIsSearch] = useState(false);
   
   const menu = (
@@ -158,20 +160,41 @@ const Header = () => {
           </Link>
         </Left>}
         <Center className="j-center">
-          <SearchContainer>
-            <form action="/search" className="w-100">
-              <Input placeholder="Search by product name" name="name" />
-            </form>
-          </SearchContainer>
+        <SearchContainer>
+  <form action="/search" style={{display: "flex"}} className="w-100">
+    <Input
+      placeholder="Search by product name"
+      name="name"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    {searchTerm && (
+      <IconButton onClick={() => setSearchTerm("")}>
+        <Clear fontSize="small" sx={{ color: "black" }} />
+      </IconButton>
+    )}
+  </form>
+</SearchContainer>
         </Center>
         {isSearch &&
         <>
         
-          <SearchContainer>
-          <form action="/search" className="w-100">
-            <Input placeholder="Search by product name" name="name" />
-          </form>
-        </SearchContainer>
+        <SearchContainer>
+  <form action="/search" style={{display: "flex"}} className="w-100">
+    <Input
+      placeholder="Search by product name"
+      name="name"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    {searchTerm && (
+      <IconButton onClick={() => setSearchTerm("")}>
+        <Clear fontSize="small" sx={{ color: "black" }} />
+      </IconButton>
+    )}
+  </form>
+</SearchContainer>
+
           <IconButton onClick={()=> setIsSearch(false)}>
             <Close sx={{color: "white"}}/>
           </IconButton>
@@ -182,7 +205,9 @@ const Header = () => {
             <>
             {isTablet && <MenuItem 
              onClick={()=> setIsSearch(true)}
-            >
+            > 
+            <Tooltip title="Search">
+
                 <Search
                   sx={{
                     color: "white",
@@ -190,13 +215,15 @@ const Header = () => {
                     marginLeft: "10px",
                   }}
                 />
+            </Tooltip>
               </MenuItem>}
                <MenuItem>
                 <Link
                   to="/register"
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                 {!isTablet && "REGISTER" }
+              <Tooltip title="Register">
+
                 <PersonAddAlt
                   sx={{
                     color: "white",
@@ -204,6 +231,7 @@ const Header = () => {
                     marginLeft: "10px",
                   }}
                 />
+              </Tooltip>
                 </Link>
               </MenuItem>
               <MenuItem>
@@ -211,7 +239,8 @@ const Header = () => {
                   to="/login"
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                   {!isTablet && "LOGIN"}
+                <Tooltip title="Login">
+
                 <PersonOutline
                   sx={{
                     color: "white",
@@ -219,6 +248,7 @@ const Header = () => {
                     marginLeft: "10px",
                   }}
                 />
+                </Tooltip>
                 </Link>
               </MenuItem>
             </>
@@ -232,7 +262,10 @@ const Header = () => {
                   <span>{quantity}</span>
                 </NumberOfCarts>
               )}
+              <Tooltip title="Cart">
+                
               <ShoppingCart sx={iconsLink} />
+              </Tooltip>
             </Link>
           </MenuItem>
           {logged && (

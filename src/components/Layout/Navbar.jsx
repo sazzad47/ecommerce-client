@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   background-color: ${colorsPalette["1"]};
+  padding: 0 1rem;
 `;
 
 const Wrapper = styled.div`
@@ -69,7 +70,7 @@ const MenueItem = styled.p`
 const All = styled.div`
   flex: 1.2;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   cursor: pointer;
   position: relative;
@@ -169,7 +170,7 @@ const Navbar = ({ categories }) => {
             </Menu>
           </OnHoverAll>
         </All>
-        <Cats>
+        {/* <Cats>
           <Url>
             <Link className="clear" to={"/about"}>
               About
@@ -180,7 +181,7 @@ const Navbar = ({ categories }) => {
               Contact
             </Link>
           </Url>
-        </Cats>
+        </Cats> */}
       </Wrapper>
     </Container>
   );
