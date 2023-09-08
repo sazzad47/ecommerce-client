@@ -17,7 +17,7 @@ import Dropdown from "rc-dropdown";
 import Menu, { Item as DropItem } from "rc-menu";
 import { Logout } from "../../helpers/functions";
 import { CartHooks } from "../../Features";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 import { IconButton, Tooltip } from "@mui/material";
 
@@ -119,13 +119,13 @@ const Header = () => {
   const { useGetCartItems } = CartHooks;
   const { quantity } = useGetCartItems();
 
-  const isMobile = useMediaQuery('(max-width:680px)');
-  const isTablet = useMediaQuery('(max-width:1080px)');
-  const isLaptop = useMediaQuery('(max-width:1550px)');
-  
+  const isMobile = useMediaQuery("(max-width:680px)");
+  const isTablet = useMediaQuery("(max-width:1080px)");
+  const isLaptop = useMediaQuery("(max-width:1550px)");
+
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearch, setIsSearch] = useState(false);
-  
+
   const menu = (
     <Menu
       style={{ width: "120px" }}
@@ -154,130 +154,141 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        {!isSearch && <Left>
-          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-            <Logo>{isMobile? "ECOM": "ECOMMERCE"}</Logo>
-          </Link>
-        </Left>}
-        <Center className="j-center">
-        <SearchContainer>
-  <form action="/search" style={{display: "flex"}} className="w-100">
-    <Input
-      placeholder="Search by product name"
-      name="name"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
-    {searchTerm && (
-      <IconButton onClick={() => setSearchTerm("")}>
-        <Clear fontSize="small" sx={{ color: "black" }} />
-      </IconButton>
-    )}
-  </form>
-</SearchContainer>
-        </Center>
-        {isSearch &&
-        <>
-        
-        <SearchContainer>
-  <form action="/search" style={{display: "flex"}} className="w-100">
-    <Input
-      placeholder="Search by product name"
-      name="name"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
-    {searchTerm && (
-      <IconButton onClick={() => setSearchTerm("")}>
-        <Clear fontSize="small" sx={{ color: "black" }} />
-      </IconButton>
-    )}
-  </form>
-</SearchContainer>
-
-          <IconButton onClick={()=> setIsSearch(false)}>
-            <Close sx={{color: "white"}}/>
-          </IconButton>
-        </>
-        }
-        {!isSearch && <Right>
-          {!logged ? (
-            <>
-            {isTablet && <MenuItem 
-             onClick={()=> setIsSearch(true)}
-            > 
-            <Tooltip title="Search">
-
-                <Search
-                  sx={{
-                    color: "white",
-                    marginRight: "10px",
-                    marginLeft: "10px",
-                  }}
-                />
-            </Tooltip>
-              </MenuItem>}
-               <MenuItem>
-                <Link
-                  to="/register"
-                  style={{ color: "white", textDecoration: "none" }}
-                >
-              <Tooltip title="Register">
-
-                <PersonAddAlt
-                  sx={{
-                    color: "white",
-                    marginRight: "10px",
-                    marginLeft: "10px",
-                  }}
-                />
-              </Tooltip>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link
-                  to="/login"
-                  style={{ color: "white", textDecoration: "none" }}
-                >
-                <Tooltip title="Login">
-
-                <PersonOutline
-                  sx={{
-                    color: "white",
-                    marginRight: "10px",
-                    marginLeft: "10px",
-                  }}
-                />
-                </Tooltip>
-                </Link>
-              </MenuItem>
-            </>
-          ) : (
-            ""
-          )}
-          <MenuItem>
-            <Link className="default_anchor" to={"/cart"}>
-              {logged && quantity && (
-                <NumberOfCarts className="d-flex j-center a-center">
-                  <span>{quantity}</span>
-                </NumberOfCarts>
-              )}
-              <Tooltip title="Cart">
-                
-              <ShoppingCart sx={iconsLink} />
-              </Tooltip>
+        {!isSearch && (
+          <Left>
+            <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+              <Logo>{isMobile ? "ECOM" : "ECOMMERCE"}</Logo>
             </Link>
-          </MenuItem>
-          {logged && (
+          </Left>
+        )}
+        <Center className="j-center">
+          <SearchContainer>
+            <form
+              action="/search"
+              style={{ display: "flex" }}
+              className="w-100"
+            >
+              <Input
+                placeholder="Search by product name"
+                name="name"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {searchTerm && (
+                <IconButton onClick={() => setSearchTerm("")}>
+                  <Clear fontSize="small" sx={{ color: "black" }} />
+                </IconButton>
+              )}
+            </form>
+          </SearchContainer>
+        </Center>
+        {isSearch && (
+          <>
+            <SearchContainer>
+              <form
+                action="/search"
+                style={{ display: "flex" }}
+                className="w-100"
+              >
+                <Input
+                  placeholder="Search by product name"
+                  name="name"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                {searchTerm && (
+                  <IconButton onClick={() => setSearchTerm("")}>
+                    <Clear fontSize="small" sx={{ color: "black" }} />
+                  </IconButton>
+                )}
+              </form>
+            </SearchContainer>
+
+            <IconButton onClick={() => setIsSearch(false)}>
+              <Close sx={{ color: "white" }} />
+            </IconButton>
+          </>
+        )}
+        {!isSearch && (
+          <Right>
+            {!logged ? (
+              <>
+                {isTablet && (
+                  <MenuItem onClick={() => setIsSearch(true)}>
+                    <Tooltip title="Search">
+                      <Search
+                        sx={{
+                          color: "white",
+                          marginRight: "10px",
+                          marginLeft: "10px",
+                        }}
+                      />
+                    </Tooltip>
+                  </MenuItem>
+                )}
+                <MenuItem>
+                  <Link
+                    to="/register"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Tooltip title="Register">
+                      <PersonAddAlt
+                        sx={{
+                          color: "white",
+                          marginRight: "10px",
+                          marginLeft: "10px",
+                        }}
+                      />
+                    </Tooltip>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link
+                    to="/login"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Tooltip title="Login">
+                      <PersonOutline
+                        sx={{
+                          color: "white",
+                          marginRight: "10px",
+                          marginLeft: "10px",
+                        }}
+                      />
+                    </Tooltip>
+                  </Link>
+                </MenuItem>
+              </>
+            ) : (
+              ""
+            )}
             <MenuItem>
-              <Dropdown trigger={["click"]} overlay={menu} animation="slide-up">
-                <Link className="default_anchor">
-                  <Person sx={iconsLink} />
-                </Link>
-              </Dropdown>
+              <Link className="default_anchor" to={"/cart"}>
+                {logged && quantity && (
+                  <NumberOfCarts className="d-flex j-center a-center">
+                    <span>{quantity}</span>
+                  </NumberOfCarts>
+                )}
+                <Tooltip title="Cart">
+                  <ShoppingCart sx={iconsLink} />
+                </Tooltip>
+              </Link>
             </MenuItem>
-          )}
-        </Right>}
+            {logged && (
+              <MenuItem>
+                <Dropdown
+                  trigger={["click"]}
+                  overlay={menu}
+                  animation="slide-up"
+                >
+                  <Link className="default_anchor">
+                    <Person sx={iconsLink} />
+                  </Link>
+                </Dropdown>
+              </MenuItem>
+            )}
+          </Right>
+        )}
       </Wrapper>
     </Container>
   );

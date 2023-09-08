@@ -131,6 +131,7 @@ export const Button = styled.button`
 
 
 export const FooterContiner = styled.div`
+padding-bottom: 20px;
 width: 100%;
 max-width: 1000px;
 margin: 0 auto;
@@ -148,18 +149,18 @@ export const FooterLeft = styled.div`
 flex: 1;
 display: flex;
 flex-direction: column;
-padding: 20px;
+padding: 0px 20px;
 `;
 
 export const FooterCenter = styled.div`
 flex: 1;
-padding: 20px;
+padding: 5px 20px;
 `;
 
 
 export const FooterRight = styled.div`
 flex: 1;
-padding: 20px;
+padding: 5px 20px;
 `;
 export const Left   = styled.div`flex:1;  align-items: center; display:flex;`
 export const Center = styled.div`flex:1; text-align:center;`

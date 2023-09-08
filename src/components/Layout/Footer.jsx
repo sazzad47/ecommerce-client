@@ -16,11 +16,22 @@ import {
   FooterRight,
 } from "../../all-styled";
 import { Link } from "react-router-dom";
+import { mobile, tablet } from "../../responsive";
 
-const Logo = styled.h1``;
+const Logo = styled.h1`
+margin-bottom: 0;
+padding-bottom: 0;
+`;
 
 const Desc = styled.p`
   margin: 20px 0px;
+  ${mobile({
+    margin: "10px 0px",
+  })}
+
+  ${tablet({
+    margin: "10px 0px",
+  })}
 `;
 const SocialContainer = styled.div`
   display: flex;
@@ -40,6 +51,13 @@ const SocialIcon = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 30px;
+  ${mobile({
+    marginBottom: "15px",
+  })}
+
+  ${tablet({
+    marginBottom: "15px",
+  })}
 `;
 
 const List = styled.ul`
