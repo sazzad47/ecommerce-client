@@ -1,86 +1,91 @@
-import React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { Layout } from "../../components";
-import { colorsPalette } from "../../constants";
+import contactPhoto from "../../images/contact-page-photo.png"
 
-const ContactContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
-const ContactHeader = styled.h1`
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #333;
-`;
+export default function ContactPage() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
 
-const ContactForm = styled.form`
-  width: 100%;
-  max-width: 400px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-`;
-
-const FormLabel = styled.label`
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 8px;
-`;
-
-const FormInput = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
-`;
-
-const FormTextarea = styled.textarea`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
-`;
-
-const FormButton = styled.button`
-  background-color: ${colorsPalette[5]};
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${colorsPalette[4]};
-  }
-`;
-
-const Contact = () => {
   return (
     <Layout>
-      <ContactContainer className="mt-4 mb-4">
-        <ContactHeader>Contact Us</ContactHeader>
-        <ContactForm>
-          <FormLabel>Name</FormLabel>
-          <FormInput type="text" placeholder="Your Name" />
-          <FormLabel>Email</FormLabel>
-          <FormInput type="email" placeholder="Your Email" />
-          <FormLabel>Message</FormLabel>
-          <FormTextarea rows="6" placeholder="Your Message" />
-          <FormButton type="submit">Send Message</FormButton>
-        </ContactForm>
-      </ContactContainer>
+      <Grid container component="main" sx={{ maxWidth: "500px", margin: "0 auto", padding: "3rem 1rem" }}>
+        
+        <Grid item xs={12} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <img src={contactPhoto} alt='contact' width={70} height={70} />
+              
+           
+            <Typography component="h1" variant="h5">
+              Contact Us
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                variant='standard'
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="name"
+                autoFocus
+              />
+              <TextField
+                variant='standard'
+                margin="normal"
+                required
+                fullWidth
+                name="email"
+                label="Email"
+                type="email"
+                id="email"
+                autoComplete="email"
+              />
+              <TextField
+                multiline
+                minRows={4}
+                variant='standard'
+                margin="normal"
+                required
+                fullWidth
+                name="message"
+                label="Message"
+                type="message"
+                id="message"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Send
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
     </Layout>
   );
-};
-
-export default Contact;
+}
