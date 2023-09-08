@@ -15,14 +15,12 @@ export default function ContactPage() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
-      password: data.get('password'),
     });
   };
 
   return (
     <Layout>
       <Grid container component="main" sx={{ maxWidth: "500px", margin: "0 auto", padding: "3rem 1rem" }}>
-        
         <Grid item xs={12} component={Paper} elevation={6} square>
           <Box
             sx={{
