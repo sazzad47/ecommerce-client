@@ -7,7 +7,6 @@ import "rc-dropdown/assets/index.css";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,6 +17,5 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
-    <ReactQueryDevtools />
   </QueryClientProvider>
 );
