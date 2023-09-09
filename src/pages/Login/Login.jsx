@@ -5,26 +5,35 @@ import { mobile, tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 import useLoginPage from "./Logic";
 import { Oval } from "react-loader-spinner";
+import { TextField } from "@mui/material";
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 3rem 1rem;
   background-size: cover;
   display: flex;
   align-items: center;
+  ${mobile({
+    justifyContent: "flex-start",
+  })}
+
+  ${tablet({
+    justifyContent: "flex-start",
+  })}
   justify-content: center;
   flex-direction: column;
 `;
 
 const Wrapper = styled.div`
-  width: 50%;
-  padding: 20px;
+  max-width: 100%;
+  width: 500px;
   background-color: white;
+  background-image: linear-gradient(-227deg, #E3FDF5 50%, #FFE6FA 50%);
   ${mobile({
-    width: "95%",
+    backgroundImage: "linear-gradient(-237deg, #E3FDF5 50%, #FFE6FA 50%)",
   })}
 
   ${tablet({
-    width: "90%",
+    backgroundImage: "linear-gradient(-237deg, #E3FDF5 50%, #FFE6FA 50%)",
   })}
 `;
 
@@ -34,15 +43,10 @@ const Title = styled.h1`
 `;
 
 const Form = styled.form`
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-`;
-
-const Input = styled.input`
-  flex: 1;
-  min-width: 40%;
-  margin: 10px 0;
-  padding: 10px;
+  gap: 1rem;
 `;
 
 const Button = styled.button`
@@ -77,16 +81,18 @@ const Login = () => {
         <Logo>ECOMMERCE.</Logo>
       </Link>
       <Wrapper>
-        <Title>SIGN IN</Title>
         <Form onSubmit={handleSubmit}>
-          <Input
+        <Title>SIGN IN</Title>
+          <TextField
+            variant="filled"
             placeholder="Email Adress"
             name="email"
             type="email"
             value={inputs.email}
             onChange={handleInputChange}
           />
-          <Input
+          <TextField
+            variant="filled"
             placeholder="password"
             type="password"
             name="password"
@@ -105,7 +111,6 @@ const Login = () => {
               CREATE A NEW ACCOUNT
             </Link>
           </LinkWrapper>
-        </Form>
         <Wave fill="url(#gradient)">
           <defs>
             <linearGradient id="gradient" gradientTransform="rotate(90)">
@@ -114,6 +119,7 @@ const Login = () => {
             </linearGradient>
           </defs>
         </Wave>
+        </Form>
       </Wrapper>
     </Container>
   );
