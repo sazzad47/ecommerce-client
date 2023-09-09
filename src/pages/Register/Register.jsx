@@ -7,7 +7,7 @@ import useRegistration from "./Logic";
 import ValidateSentence from "./ValidateSentence";
 import Validations from "../../helpers/validations";
 import { Oval } from "react-loader-spinner";
-import { TextField } from "@mui/material";
+import { Paper, TextField } from "@mui/material";
 import { useState } from "react";
 const Container = styled.div`
   min-height: 100vh;
@@ -36,7 +36,6 @@ const Wrapper = styled.div`
   max-width: 100%;
   width: 500px;
   background-color: #e3fdf5;
-  
 `;
 
 const Title = styled.h1`
@@ -68,7 +67,12 @@ const Button = styled.button`
 `;
 
 const Register = () => {
-  const [isValidationVisible, setValidationVisible] = useState(false);
+  const [isPasswordValidationVisible, setPasswordValidationVisible] =
+    useState(false);
+  const [
+    isConfirmPasswordValidationVisible,
+    setConfirmPasswordValidationVisible,
+  ] = useState(false);
   const { handleInputChange, inputs, handleSubmit, isLoading, isError } =
     useRegistration();
   return (
@@ -101,16 +105,47 @@ const Register = () => {
             value={inputs.email}
             onChange={handleInputChange}
           />
-          <TextField
-            variant="filled"
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={inputs.password}
-            onChange={handleInputChange}
-            onFocus={()=> setValidationVisible(true)}
-            onBlur={()=> setValidationVisible(false)}
-          />
+          <div style={{ position: "relative", width: "100%" }}>
+            <TextField
+              fullWidth
+              variant="filled"
+              placeholder="Password"
+              type="password"
+              name="password"
+              value={inputs.password}
+              onChange={handleInputChange}
+              onFocus={() => setPasswordValidationVisible(true)}
+              onBlur={() => setPasswordValidationVisible(false)}
+            />
+            {isPasswordValidationVisible && (
+              <Paper
+                style={{ position: "absolute", zIndex: 1, top: "4rem" }}
+                className="w-100"
+              >
+                <div
+                  style={{ padding: "1rem", flexDirection: "column" }}
+                  className="d-flex g-15 j-start a-start"
+                >
+                  <ValidateSentence
+                    sentence={"Password should be at least 8 characters"}
+                    expression={Validations.Length8(inputs.password)}
+                  />
+                  <ValidateSentence
+                    sentence={"Password should contains capital letters"}
+                    expression={Validations.CapitalLetter(inputs.password)}
+                  />
+                  <ValidateSentence
+                    sentence={"Password should contains small letters"}
+                    expression={Validations.SmallLetter(inputs.password)}
+                  />
+                  <ValidateSentence
+                    sentence={"Password should contains special characters"}
+                    expression={Validations.SpecialChar(inputs.password)}
+                  />
+                </div>
+              </Paper>
+            )}
+          </div>
           <TextField
             variant="filled"
             placeholder="Confirm Password"
@@ -118,28 +153,10 @@ const Register = () => {
             name="confirmPassword"
             value={inputs.confirmPassword}
             onChange={handleInputChange}
-            onFocus={()=> setValidationVisible(true)}
-            onBlur={()=> setValidationVisible(false)}
+            onFocus={() => setConfirmPasswordValidationVisible(true)}
+            onBlur={() => setConfirmPasswordValidationVisible(false)}
           />
-          {
-            isValidationVisible &&
-          <div style={{flexDirection: "column"}} className="w-100 d-flex g-15 j-start a-start">
-            <ValidateSentence
-              sentence={"Password should be at least 8 characters"}
-              expression={Validations.Length8(inputs.password)}
-            />
-            <ValidateSentence
-              sentence={"Password should contains capital letters"}
-              expression={Validations.CapitalLetter(inputs.password)}
-            />
-            <ValidateSentence
-              sentence={"Password should contains small letters"}
-              expression={Validations.SmallLetter(inputs.password)}
-            />
-            <ValidateSentence
-              sentence={"Password should contains special characters"}
-              expression={Validations.SpecialChar(inputs.password)}
-            />
+          {isConfirmPasswordValidationVisible && (
             <ValidateSentence
               sentence={"Passwords should match"}
               expression={
@@ -148,8 +165,8 @@ const Register = () => {
                 inputs.password === inputs.confirmPassword
               }
             />
-          </div>
-          }
+          )}
+
           <TextField
             variant="filled"
             placeholder="Phone"
@@ -195,7 +212,11 @@ const Register = () => {
           <div className="d-flex-column mb-3">
             <Agreement>
               By creating an account, I consent to the processing of my personal
-              data in accordance with the <Link to="/policy"> <b>PRIVACY POLICY</b> </Link>
+              data in accordance with the{" "}
+              <Link to="/policy">
+                {" "}
+                <b>PRIVACY POLICY</b>{" "}
+              </Link>
             </Agreement>
             <Link
               style={{ fontSize: "12px" }}

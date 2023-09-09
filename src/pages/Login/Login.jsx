@@ -93,7 +93,7 @@ const Login = () => {
           />
           <TextField
             variant="filled"
-            placeholder="password"
+            placeholder="Password"
             type="password"
             name="password"
             value={inputs.password}
