@@ -5,7 +5,8 @@ import styled from "styled-components";
 const ValidationsParagraph = styled.p`
   font-size: 14px;
   color: #00000099;
-  margin: 3px 0px;
+  margin: 0;
+  padding: 0;
 `;
 const ValidateSentence = ({sentence , expression}) => {
   return (

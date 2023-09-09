@@ -81,21 +81,29 @@ const Register = () => {
           <Title>CREATE AN ACCOUNT</Title>
           <TextField
             variant="filled"
-            placeholder="first name"
+            placeholder="First Name"
             name="firstName"
             value={inputs.firstName}
             onChange={handleInputChange}
           />
           <TextField
             variant="filled"
-            placeholder="last name"
+            placeholder="Last Name"
             name="lastName"
             value={inputs.lastName}
             onChange={handleInputChange}
           />
           <TextField
             variant="filled"
-            placeholder="password"
+            placeholder="Email"
+            type="email"
+            name="email"
+            value={inputs.email}
+            onChange={handleInputChange}
+          />
+          <TextField
+            variant="filled"
+            placeholder="Password"
             type="password"
             name="password"
             value={inputs.password}
@@ -105,7 +113,7 @@ const Register = () => {
           />
           <TextField
             variant="filled"
-            placeholder="confirm password"
+            placeholder="Confirm Password"
             type="password"
             name="confirmPassword"
             value={inputs.confirmPassword}
@@ -115,7 +123,7 @@ const Register = () => {
           />
           {
             isValidationVisible &&
-          <div className="w-100 d-flex f-wrap g-15 j-start a-start pad-10">
+          <div style={{flexDirection: "column"}} className="w-100 d-flex g-15 j-start a-start">
             <ValidateSentence
               sentence={"Password should be at least 8 characters"}
               expression={Validations.Length8(inputs.password)}
@@ -142,14 +150,6 @@ const Register = () => {
             />
           </div>
           }
-          <TextField
-            variant="filled"
-            placeholder="email"
-            type="email"
-            name="email"
-            value={inputs.email}
-            onChange={handleInputChange}
-          />
           <TextField
             variant="filled"
             placeholder="Phone"
