@@ -11,7 +11,7 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 const Container = styled.div`
   min-height: 100vh;
-  padding: 3rem 1rem;
+  padding: 3rem 0;
   background-size: cover;
   display: flex;
   align-items: center;

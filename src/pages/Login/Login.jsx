@@ -8,7 +8,7 @@ import { Oval } from "react-loader-spinner";
 import { TextField } from "@mui/material";
 const Container = styled.div`
   min-height: 100vh;
-  padding: 3rem 1rem;
+  padding: 3rem 0;
   background-size: cover;
   display: flex;
   align-items: center;
