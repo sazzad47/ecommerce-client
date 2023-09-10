@@ -21,7 +21,7 @@ export default function ContactPage() {
   return (
     <Layout>
       <Grid container component="main" sx={{ maxWidth: "500px", margin: "0 auto", padding: "3rem 1rem" }}>
-        <Grid item xs={12} component={Paper} elevation={6} square>
+        <Grid item xs={12} component={Paper} elevation={6}>
           <Box
             sx={{
               my: 8,

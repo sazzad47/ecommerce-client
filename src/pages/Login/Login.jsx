@@ -1,65 +1,18 @@
 import styled from "styled-components";
-import { colorsPalette } from "../../constants";
-import Wave from "react-wavify";
-import { mobile, tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 import useLoginPage from "./Logic";
 import { Oval } from "react-loader-spinner";
-import { TextField } from "@mui/material";
-const Container = styled.div`
-  min-height: 100vh;
-  padding: 3rem 0;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  ${mobile({
-    justifyContent: "flex-start",
-  })}
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import LockPersonIcon from "@mui/icons-material/LockPerson";
 
-  ${tablet({
-    justifyContent: "flex-start",
-  })}
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const Wrapper = styled.div`
-  max-width: 100%;
-  width: 500px;
-  background-color: white;
-  background-image: linear-gradient(-227deg, #E3FDF5 50%, #FFE6FA 50%);
-  ${mobile({
-    backgroundImage: "linear-gradient(-237deg, #E3FDF5 50%, #FFE6FA 50%)",
-  })}
-
-  ${tablet({
-    backgroundImage: "linear-gradient(-237deg, #E3FDF5 50%, #FFE6FA 50%)",
-  })}
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 300;
-`;
-
-const Form = styled.form`
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const Button = styled.button`
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: ${colorsPalette["4"]};
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-`;
 const Logo = styled.h1`
   font-weight: bold;
   color: black;
@@ -76,52 +29,81 @@ const Login = () => {
   const { inputs, handleInputChange, handleSubmit, isError, isLoading } =
     useLoginPage();
   return (
-    <Container>
-      <Link to={"/"} className="default_anchor">
-        <Logo>ECOMMERCE.</Logo>
-      </Link>
-      <Wrapper>
-        <Form onSubmit={handleSubmit}>
-        <Title>SIGN IN</Title>
-          <TextField
-            variant="filled"
-            placeholder="Email Adress"
-            name="email"
-            type="email"
-            value={inputs.email}
-            onChange={handleInputChange}
-          />
-          <TextField
-            variant="filled"
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={inputs.password}
-            onChange={handleInputChange}
-          />
-          <Button type="submit">
-            {isLoading && !isError ? (
-              <Oval color="white" width={20} height={20} />
-            ) : (
-              "Log in"
-            )}
-          </Button>
-          <LinkWrapper>
-            <Link to={"/register"} className="default_anchor">
-              CREATE A NEW ACCOUNT
-            </Link>
-          </LinkWrapper>
-        <Wave fill="url(#gradient)">
-          <defs>
-            <linearGradient id="gradient" gradientTransform="rotate(90)">
-              <stop offset="10%" stopColor={colorsPalette["4"]} />
-              <stop offset="90%" stopColor={colorsPalette["5"]} />
-            </linearGradient>
-          </defs>
-        </Wave>
-        </Form>
-      </Wrapper>
-    </Container>
+    <Grid
+      container
+      component="main"
+      sx={{ maxWidth: "500px", margin: "0 auto", padding: "3rem 1rem" }}
+    >
+      <Grid sx={{ mx: "auto", mb: 4 }}>
+        <Link to={"/"} className="default_anchor">
+          <Logo>ECOMMERCE.</Logo>
+        </Link>
+      </Grid>
+      <Grid item xs={12} component={Paper} elevation={6}>
+        <Box
+          sx={{
+            my: 8,
+            mx: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockPersonIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 1 }}
+          >
+            <TextField
+              variant="standard"
+              margin="normal"
+              fullWidth
+              placeholder="Email Adress"
+              name="email"
+              type="email"
+              value={inputs.email}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="standard"
+              margin="normal"
+              fullWidth
+              placeholder="Password"
+              type="password"
+              name="password"
+              value={inputs.password}
+              onChange={handleInputChange}
+            />
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {isLoading && !isError ? (
+                <Oval color="white" width={20} height={20} />
+              ) : (
+                "Log in"
+              )}
+            </Button>
+
+            <LinkWrapper>
+              <Link to={"/register"} className="default_anchor">
+                CREATE A NEW ACCOUNT
+              </Link>
+            </LinkWrapper>
+          </Box>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 
