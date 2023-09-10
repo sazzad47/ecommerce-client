@@ -21,6 +21,13 @@ import { mobile, tablet } from "../../responsive";
 const Logo = styled.h1`
 margin-bottom: 0;
 padding-bottom: 0;
+${mobile({
+  margin: "5px auto",
+})}
+
+${tablet({
+  margin: "5px auto",
+})}
 `;
 
 const Desc = styled.p`
@@ -53,10 +60,12 @@ const Title = styled.h3`
   margin-bottom: 30px;
   ${mobile({
     marginBottom: "15px",
+    textAlign: "center",
   })}
 
   ${tablet({
     marginBottom: "15px",
+    textAlign: "center",
   })}
 `;
 
