@@ -28,7 +28,7 @@ const TitleCon = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: ${colorsPalette["5"]};
+
   padding: 15px;
   border-radius: 0px 30px;
   width: fit-content;
@@ -41,15 +41,12 @@ const TitleCon = styled.div`
 
 display:flex;
 `;
-const TitleText = styled.h2`
-  color: white;
-  margin: auto;
-  ${tablet({
-    fontSize: "15px",
-  })}
-  ${mobile({
-    fontSize: "15px",
-  })}
+
+const TitleText = styled.p`
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: ${colorsPalette["4"]};
 `;
 
 const GridContainer = styled.div`

@@ -12,7 +12,7 @@ import { Oval } from "react-loader-spinner";
 const Home = () => {
   const { useHome } = HomeHooks;
   const { GetInitial, InitialData, InitialLoading, InitialSuccess } = useHome();
-  console.log('initialData', InitialData)
+
   useEffect(() => {
     GetInitial();
   }, []);
