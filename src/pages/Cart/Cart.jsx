@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect } from "react";
 import styled from "styled-components";
 import { Layout } from "../../components";
 import { colorsPalette, currencySymbol, SiteMargin } from "../../constants";
@@ -7,6 +7,9 @@ import { CartHooks } from "../../Features";
 import CartProduct from "./CartProduct";
 import { Link, useNavigate } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
+import { Button, Paper } from "@mui/material";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -40,15 +43,9 @@ const TopButton = styled.button`
   color: ${(props) => props.type === "filled" && "white"};
 `;
 
-const TopTexts = styled.div``;
-const TopText = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin: 0px 10px;
-`;
-
 const Bottom = styled.div`
   display: flex;
+  gap: 2rem;
   justify-content: space-between;
   ${mobile({
     flexDirection: "column",
@@ -71,9 +68,7 @@ const Hr = styled.hr`
 
 const Summary = styled.div`
   flex: 1;
-  border: 0.5px solid lightgray;
   border-radius: 10px;
-  padding: 10px;
   height: fit-content;
   position: sticky;
   top: 15px;
@@ -86,7 +81,8 @@ const Summary = styled.div`
   })}
 `;
 
-const SummaryTitle = styled.h1`
+const SummaryTitle = styled.h2`
+  text-align: center;
   font-weight: 200;
 `;
 
@@ -101,15 +97,6 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: ${colorsPalette["4"]};
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-`;
 
 export const cartContext = createContext();
 
@@ -143,14 +130,13 @@ const Cart = () => {
           <Wrapper>
             <Top>
               <Link to={"/"}>
-                <TopButton>CONTINUE SHOPPING</TopButton>
+                <Button
+                  variant="contained"
+                  startIcon={<ShoppingBasketIcon fontSize="1.5rem" />}
+                >
+                  CONTINUE SHOPPING
+                </Button>
               </Link>
-              <TopTexts>
-                <TopText>Shopping Bag({quantity || 0})</TopText>
-              </TopTexts>
-              <TopButton type="filled" onClick={() => handleCheckout()}>
-                CHECKOUT NOW
-              </TopButton>
             </Top>
             <Bottom>
               <Info>
@@ -158,18 +144,24 @@ const Cart = () => {
                   return (
                     <>
                       <CartProduct key={item.id} item={item} />
-                      <Hr />
                     </>
                   );
                 })}
               </Info>
               <Summary>
-                <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                <SummaryItem type="total">
-                  <SummaryItemText>Total</SummaryItemText>
-                  <SummaryItemPrice>{total} {currencySymbol}</SummaryItemPrice>
-                </SummaryItem>
-                <Button onClick={() => handleCheckout()}>CHECKOUT NOW</Button>
+                <Paper sx={{padding: "1rem"}} elevation={2}>
+                  <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+                  <SummaryItem type="total">
+                    <SummaryItemText>Total</SummaryItemText>
+                    <SummaryItemPrice>
+                      {total} {currencySymbol}
+                    </SummaryItemPrice>
+                  </SummaryItem>
+                  <Button
+                  fullWidth
+                  variant="contained"
+                  startIcon={<AddShoppingCartIcon fontSize="1.5rem" />} onClick={() => handleCheckout()}>CHECKOUT NOW</Button>
+                </Paper>
               </Summary>
             </Bottom>
           </Wrapper>

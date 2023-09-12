@@ -5,6 +5,7 @@ import { colorsPalette, currencySymbol } from "../../constants";
 import { mobile, tablet } from "../../responsive";
 import { cartContext } from "./Cart";
 import { CartHooks } from "../../Features";
+import { Paper } from "@mui/material";
 
 const Product = styled.div`
   display: flex;
@@ -150,7 +151,7 @@ const CartProduct = ({ item }) => {
   };
 
   return (
-    <Product>
+    <Paper sx={{display: "flex", justifyContent: "space-between"}} elevation={2}>
       {(UpdateLoading || DeleteLoading) && <Overlay />}
       <ProductDetail>
         <ImageContainer>
@@ -179,7 +180,7 @@ const CartProduct = ({ item }) => {
           </Button>
         </ProductAmountContainer>
       </PriceDetail>
-    </Product>
+    </Paper>
   );
 };
 
