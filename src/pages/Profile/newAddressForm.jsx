@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { cities, colorsPalette } from "../../constants";
 import { UserHooks } from "../../Features";
 import { Oval } from "react-loader-spinner";
+import { Button, MenuItem, TextField } from "@mui/material";
 const FormContainer = styled.div`
-  max-width: 500px;
+ 
   margin: 0 auto;
 `;
 
@@ -31,14 +32,6 @@ const Select = styled.select`
   font-size: 1rem;
 `;
 
-const Button = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background-color: ${colorsPalette[5]};
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-`;
 
 const Error = styled.span`
   color: red;
@@ -72,14 +65,21 @@ const NewAddressForm = () => {
     <FormContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
-          <Label>Address</Label>
-          <Input type="text" {...register("address", { required: true })} />
+          <TextField
+            fullWidth
+            label="Address"
+            variant="standard"
+            type="text"
+            {...register("address", { required: true })}
+          />
           {errors.address && <Error>This field is required</Error>}
         </FormGroup>
 
         <FormGroup>
-          <Label>Zip Code</Label>
-          <Input
+          <TextField
+            fullWidth
+            label="Zip Code"
+            variant="standard"
             type="text"
             {...register("postal_code", {
               required: "Zip is required",
@@ -94,21 +94,20 @@ const NewAddressForm = () => {
         </FormGroup>
 
         <FormGroup>
-          <Label>City</Label>
-          <Select {...register("city", { required: true })}>
-            <option value="">Select a city</option>
+          <TextField label="City" variant="standard" select fullWidth {...register("city", { required: true })}>
+            <MenuItem value="">Select a city</MenuItem>
             {cities.map((city, i) => {
               return (
-                <option key={i} value={city}>
+                <MenuItem key={i} value={city}>
                   {city}
-                </option>
+                </MenuItem>
               );
             })}
-          </Select>
+          </TextField>
           {errors.city && <Error>Please select a city</Error>}
         </FormGroup>
 
-        <Button type="submit">
+        <Button variant="contained" color="primary" type="submit">
           {addLoading ? (
             <Oval color="white" width="20px" height="20px" />
           ) : (

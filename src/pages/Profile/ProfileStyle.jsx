@@ -10,10 +10,10 @@ export const ProfileContainer = styled.div`
 `;
 
 export const ProfileInfo = styled.div`
-  background-color: #f7f7f7;
+ 
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
 `;
 
 export const Preferences = styled.div`
@@ -102,10 +102,8 @@ export const ButtonPlus = styled.button`
   }
 `;
 export const PurchaseHistory = styled.div`
-  background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const PurchaseCard = styled.div`

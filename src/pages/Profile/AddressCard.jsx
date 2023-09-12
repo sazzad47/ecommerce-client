@@ -5,14 +5,13 @@ import {
   AddressInfo,
   AddressTitle,
   EditLink,
-  InputGroup,
-  Button,
 } from "./ProfileStyle";
 import { Oval } from "react-loader-spinner";
 import { Modal } from "../../components";
 import { useForm } from "react-hook-form";
 import { cities } from "../../constants";
 import { UserHooks } from "../../Features";
+import { Button, MenuItem, TextField } from "@mui/material";
 
 const AddressCard = ({ address }) => {
   const [show, setShow] = useState(false);
@@ -61,41 +60,52 @@ const AddressCard = ({ address }) => {
         title={"Editting address"}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <InputGroup>
-            <label>Address</label>
-            <input type="text" {...register("address", { required: true })} />
-            {errors.address && (
-              <p style={{ color: "red" }}>This field is required</p>
-            )}
-          </InputGroup>
-          <InputGroup>
-            <label>Zip</label>
-            <input
-              type="text"
-              {...register("postal_code", { required: true })}
-            />
-            {errors.postal_code && (
-              <p style={{ color: "red" }}>This field is required</p>
-            )}
-          </InputGroup>
-          <InputGroup>
-            <label>City</label>
-            <select {...register("city", { required: true })}>
-              <option value="">Select a city</option>
-              {cities.map((city, i) => {
-                return (
-                  <option key={i} value={city}>
-                    {city}
-                  </option>
-                );
-              })}
-            </select>
-            {errors.city && (
-              <p style={{ color: "red" }}>This field is required</p>
-            )}
-          </InputGroup>
-          <div className="d-flex j-center a-center">
-            <Button>
+          <TextField
+            margin="normal"
+            variant="standard"
+            fullWidth
+            label="Address"
+            type="text"
+            {...register("address", { required: true })}
+          />
+          {errors.address && (
+            <p style={{ color: "red" }}>This field is required</p>
+          )}
+
+          <TextField
+            margin="normal"
+            variant="standard"
+            fullWidth
+            label="Zip"
+            type="text"
+            {...register("postal_code", { required: true })}
+          />
+          {errors.postal_code && (
+            <p style={{ color: "red" }}>This field is required</p>
+          )}
+          <TextField
+            margin="normal"
+            variant="standard"
+            fullWidth
+            select
+            label="City"
+            {...register("city", { required: true })}
+          >
+            <MenuItem value="">Select a city</MenuItem>
+            {cities.map((city, i) => {
+              return (
+                <MenuItem key={i} value={city}>
+                  {city}
+                </MenuItem>
+              );
+            })}
+          </TextField>
+          {errors.city && (
+            <p style={{ color: "red" }}>This field is required</p>
+          )}
+
+          <div className="d-flex j-start a-center">
+            <Button sx={{mt: 3}} variant="contained" color="primary" type="submit">
               {updateLoading ? (
                 <Oval color="white" width={20} height={20} />
               ) : (

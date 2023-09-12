@@ -40,7 +40,7 @@
     padding: 20px;
     border-radius: 4px;
     min-width: 400px;
-    max-width: 650px;
+    max-width: 500px;
     overflow-x: auto;
     animation: fadeOut 0.3s ease-in-out;
     visibility: hidden;
@@ -88,10 +88,14 @@
   }
 }
 
-// /* Responsive styles for mobile devices */
-// @media screen and (max-width: 768px) {
-
-//   .modal-content {
-
-//   }
-// }
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 768px) {
+  .modal-overlay {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .modal-content {
+    width: 80vw;
+    min-width: unset !important;
+  }
+}
