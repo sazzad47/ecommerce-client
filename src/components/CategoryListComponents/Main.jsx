@@ -142,6 +142,7 @@ const Main = () => {
         </PruductsDiv>
       </Wrapper>
       <DisplayFilter dis={Show ? "100vw" : "0vw"}>
+        <div style={{padding: "1rem"}} >
         <HigherDiv>
           <Div dir="strat">
             <h1>FILTER</h1>
@@ -156,6 +157,7 @@ const Main = () => {
           </Div>
         </HigherDiv>
         <Filter />
+        </div>
       </DisplayFilter>
       {count ? (
         <PaginationDiv className="d-flex j-center">
