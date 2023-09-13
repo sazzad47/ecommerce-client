@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Accordion.scss";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +14,7 @@ const Accordion = ({ title, children }) => {
     <div className="accordion mt-2">
       <div className="accordion-header" onClick={handleToggle}>
         {title}
-        <i className={`icon ${isOpen ? "icon-minus" : "icon-plus"}`} />
+        {isOpen ? <ExpandLessIcon sx={{fontSize: "2rem"}} /> : <ExpandMoreIcon sx={{fontSize: "2rem"}} />}
       </div>
       {isOpen && <div className="accordion-content">{children}</div>}
     </div>
