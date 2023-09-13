@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   background-size : 100%;
   background-repeat : no-repaet;
   background-position : center;
+  border-radius: 10px;
   ${tablet({
     height: "140px",
     backgroundSize: "100% 100%",
