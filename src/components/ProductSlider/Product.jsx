@@ -20,7 +20,7 @@ const Info = styled.div`
   justify-content: center;
   transition: all 0.5s ease;
   z-index: 100;
-  padding: 0px 5px;
+  border-radius: 10px;
 `;
 
 const Icon = styled.div`
@@ -50,17 +50,18 @@ const Container = styled.div`
   &:hover ${Info} {
     opacity: 1;
   }
-  width : 200px;
+  width: 200px;
 `;
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 5px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   align-items: center;
   justify-contents: center;
+  border-radius: 10px;
+  padding: 5px 0;
 `;
 
 const ImageDiv = styled.div`
@@ -68,12 +69,12 @@ const ImageDiv = styled.div`
   align-items: center;
   justify-contents: center;
   height: 200px;
-  overflow:hidden;
+  overflow: hidden;
 `;
 
 const Image = styled.img`
   width: auto;
-  height:100%;
+  height: 100%;
   margin: auto;
   object-fit: cover;
 `;
@@ -93,7 +94,7 @@ const SaleRange = styled.p`
   color: white;
   margin: auto;
   font-weight: bold;
-  font-size : 14px;
+  font-size: 14px;
 `;
 
 const TitleDiv = styled.div`
@@ -150,43 +151,50 @@ const Product = ({ deal, item }) => {
   };
   return (
     <Container>
-      <Wrapper>
-        <ImageDiv>
-          <Image src={item.images[0].image_url} />
-        </ImageDiv>
-        <TitleDiv>
-          <LinkToGO href="#">{item.name}</LinkToGO>
-        </TitleDiv>
-        <PriceDiv>
-          <Price>
-            {deal ? item.price - item.price * (deal / 100) : item.price} {currencySymbol}
-            {deal ? "|" : ""}
-            {deal ? <OldPrice>{currencySymbol} {" "} {item.price}</OldPrice> : ""}
-          </Price>
-        </PriceDiv>
-      </Wrapper>
-      <Info>
-        <Icon onClick={() => handleAdding()} role="button">
-          {AddLoading ? (
-            <Oval width={15} height={15} color="black" />
-          ) : (
-            <ShoppingCartOutlined />
-          )}
-        </Icon>
-        <Icon>
-          <Link to={`/products/${item.name}/${item.id}`} className="clear">
-            {" "}
-            <SearchOutlined />{" "}
-          </Link>
-        </Icon>
-      </Info>
-      {deal ? (
-        <Sale>
-          <SaleRange>{deal}%</SaleRange>
-        </Sale>
-      ) : (
-        ""
-      )}
+        <Wrapper>
+          <ImageDiv>
+            <Image src={item.images[0].image_url} />
+          </ImageDiv>
+          <TitleDiv>
+            <LinkToGO href="#">{item.name}</LinkToGO>
+          </TitleDiv>
+          <PriceDiv>
+            <Price>
+              {deal ? item.price - item.price * (deal / 100) : item.price}{" "}
+              {currencySymbol}
+              {deal ? "|" : ""}
+              {deal ? (
+                <OldPrice>
+                  {currencySymbol} {item.price}
+                </OldPrice>
+              ) : (
+                ""
+              )}
+            </Price>
+          </PriceDiv>
+        </Wrapper>
+        <Info>
+          <Icon onClick={() => handleAdding()} role="button">
+            {AddLoading ? (
+              <Oval width={15} height={15} color="black" />
+            ) : (
+              <ShoppingCartOutlined />
+            )}
+          </Icon>
+          <Icon>
+            <Link to={`/products/${item.name}/${item.id}`} className="clear">
+              {" "}
+              <SearchOutlined />{" "}
+            </Link>
+          </Icon>
+        </Info>
+        {deal ? (
+          <Sale>
+            <SaleRange>{deal}%</SaleRange>
+          </Sale>
+        ) : (
+          ""
+        )}
     </Container>
   );
 };

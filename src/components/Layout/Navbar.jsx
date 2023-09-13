@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ExpandCircleDown } from "@mui/icons-material";
 import { mobile, tablet, laptop } from "../../responsive";
 import { CategoriesHooks } from "../../Features";
-import { Link } from "react-router-dom";
+
 
 const Container = styled.div`
   background-color: ${colorsPalette["1"]};
@@ -24,9 +24,12 @@ const Wrapper = styled.div`
 
 const OnHoverAll = styled.div`
   position: absolute;
+  border: 1px solid #34d8eb;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   top: ${(props) => props.h};
   left: 0;
-  min-height: 30vh;
+  min-height: auto;
   max-height: 90vh;
   overflow: auto;
   padding: 5px;
@@ -42,29 +45,11 @@ const OnHoverAll = styled.div`
 
   ${mobile({
     flexDirection: "column",
-    width: "100vw",
   })}
 
   ${tablet({
     flexDirection: "column",
-    width: "100vw",
   })}
-`;
-const Menu = styled.div`
-  flex: 1;
-  border-right: 1px solid rgb(226, 229, 241);
-  background-color: ${colorsPalette["3"]};
-  display: flex;
-  padding: 10px;
-  flex-direction: column;
-`;
-
-const MenueItem = styled.p`
-  color: black;
-  font-size: 13px;
-  &:hover {
-    color: ${colorsPalette["4"]};
-  }
 `;
 
 const All = styled.div`
@@ -84,46 +69,29 @@ const All = styled.div`
   })}
 `;
 
+const CategoryItem = styled.div`
+  padding: 8px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    display: block;
+  }
+`;
+
 const MainLink = styled.p`
   font-size: 15px;
   font-weight: bold;
   color: ${colorsPalette["4"]};
 `;
 
-const Cats = styled.div`
-  flex: 8;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  ${mobile({
-    justifyContent: "center",
-    padding: "15px",
-  })}
 
-  ${tablet({
-    justifyContent: "center",
-    padding: "15px",
-  })}
-`;
-
-const Url = styled.div`
-  text-decoration: none;
-  color: ${colorsPalette["4"]};
-  font-weight: 600;
-  opacity: 1;
-  transition: all 0.4s ease-in-out;
-  position: relative;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  margin: 0px 20px;
-  ${mobile({
-    fontSize: "15px",
-  })}
-
-  ${tablet({
-    fontSize: "15px",
-  })}
-`;
 const Navbar = ({ categories }) => {
   const [ObjectH, SetObjectH] = useState({});
   const [Show, SetShow] = useState(false);
@@ -151,11 +119,11 @@ const Navbar = ({ categories }) => {
               SetShow(false);
             }}
           >
-            <Menu>
+            <div style={{width: "100%", margin: "0.4rem auto"}}>
               {React.Children.toArray(
                 data?.data.map((category) => {
                   return (
-                    <MenueItem
+                    <CategoryItem
                       onMouseEnter={() => {
                         handleHover(category);
                       }}
@@ -163,25 +131,13 @@ const Navbar = ({ categories }) => {
                       <a className="anchor" href={`/category/${category.id}`}>
                         {category.title}
                       </a>
-                    </MenueItem>
+                    </CategoryItem>
                   );
                 })
               )}
-            </Menu>
+            </div>
           </OnHoverAll>
         </All>
-        {/* <Cats>
-          <Url>
-            <Link className="clear" to={"/about"}>
-              About
-            </Link>
-          </Url>
-          <Url>
-            <Link className="clear" to={"/contact"}>
-              Contact
-            </Link>
-          </Url>
-        </Cats> */}
       </Wrapper>
     </Container>
   );

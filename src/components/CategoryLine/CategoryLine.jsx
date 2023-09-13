@@ -23,7 +23,8 @@ const Wrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  height: 135px;
+  height: 70px;
+  width: 70px;
   padding: 10px;
   display: flex;
 `;
@@ -68,14 +69,16 @@ const CategoryLine = () => {
               key={arr[i].id}
               to={`/category/${arr[i].id}`}
             >
-              <ImageContainer>
-                <ImageCircle
-                  bg={colorsRandomly[Math.floor(Math.random() * 10)]}
-                >
-                  <Image src={arr[i].image_url} />
-                </ImageCircle>
-              </ImageContainer>
-              <TextContainer>{arr[i].title}</TextContainer>
+              <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <ImageContainer>
+                  <ImageCircle
+                    bg={colorsRandomly[Math.floor(Math.random() * 10)]}
+                  >
+                    <Image src={arr[i].image_url} />
+                  </ImageCircle>
+                </ImageContainer>
+                <TextContainer>{arr[i].title}</TextContainer>
+              </div>
             </Link>
           );
         }
