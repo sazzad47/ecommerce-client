@@ -28,7 +28,7 @@ const Logo = styled.h3`
 
 const Container = styled.div`
   background-color: ${colorsPalette["4"]};
-  max-width: 100%;
+  width: 100%;
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -220,8 +220,7 @@ const Header = () => {
                       <Search
                         sx={{
                           color: "white",
-                          marginRight: "10px",
-                          marginLeft: "10px",
+                        
                         }}
                       />
                     </Tooltip>
@@ -236,8 +235,7 @@ const Header = () => {
                       <PersonAddAlt
                         sx={{
                           color: "white",
-                          marginRight: "10px",
-                          marginLeft: "10px",
+                          
                         }}
                       />
                     </Tooltip>
@@ -252,8 +250,7 @@ const Header = () => {
                       <PersonOutline
                         sx={{
                           color: "white",
-                          marginRight: "10px",
-                          marginLeft: "10px",
+                        
                         }}
                       />
                     </Tooltip>

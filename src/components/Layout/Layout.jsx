@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 const Layout = ({ children }) => {
   return (
-    <div style={{minHeight: "100vh"}}>
+    <div style={{minHeight: "100vh", width: "100%"}}>
       <Header />
       <Navbar />
       <div style={{minHeight: "50vh"}}>
