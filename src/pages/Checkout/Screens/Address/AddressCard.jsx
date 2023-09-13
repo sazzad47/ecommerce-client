@@ -29,7 +29,7 @@ const AddressCard = ({ address }) => {
 
   return (
     <CardContainer
-      className="d-flex w-100 f-wrap g-15 a-center"
+      className="d-flex f-wrap g-15 a-center"
       selected={
         selectedAddress?.postal_code + selectedAddress?.address ==
         address.postal_code + address.address
