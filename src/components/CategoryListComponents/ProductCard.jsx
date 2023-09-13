@@ -5,13 +5,16 @@ import { mobile, tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 import { CartHooks } from "../../Features";
 import { Oval } from "react-loader-spinner";
-const Container = styled.div``;
+import { Button } from "@mui/material";
+const Container = styled.div`
+ width: 100%;
+`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5px;
-  margin: 5px;
+  width: 100%;
   box-shadow: 4px 0px 11px 0px rgba(199,199,199,0.5);
   transition all .5s ease-in-out;
   &:hover{
@@ -30,6 +33,7 @@ const Image = styled.img`
   margin: auto;
   height: 80%;
   width: auto;
+  object-fit: contain;
 `;
 
 const TitleDiv = styled.div`
@@ -92,18 +96,7 @@ const BuDiv = styled.div`
     justifyContent: "center",
   })}
 `;
-const Button = styled.button`
-  border: none;
-  background-color: ${colorsPalette["4"]};
-  padding: 5px;
-  color: white;
-  cursor: pointer;
-  border-radius: 2px;
-  &:hover {
-    background-color: ${colorsPalette["3"]};
-    color: black;
-  }
-`;
+
 const ProductCard = ({ img, name, price, oldPrice, deal, id }) => {
   const { useCartOperations } = CartHooks;
   const { AddingItem, AddLoading } = useCartOperations();
@@ -125,7 +118,6 @@ const ProductCard = ({ img, name, price, oldPrice, deal, id }) => {
             {name} {id}
           </Link>
         </TitleDiv>
-        <hr style={{ width: "100%", margin: "0px auto" }} />
 
         <OperationsDiv>
           <PriceDiv>
@@ -136,7 +128,7 @@ const ProductCard = ({ img, name, price, oldPrice, deal, id }) => {
             </Price>
           </PriceDiv>
           <BuDiv>
-            <Button onClick={() => handleAdding()}>
+            <Button variant="contained" onClick={() => handleAdding()}>
               {AddLoading ? (
                 <Oval color="white" width={20} height={20} />
               ) : (

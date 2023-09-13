@@ -6,24 +6,22 @@ const Container = styled.div``;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.grid}, 20%);
-  padding: 10px;
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   ${tablet({
-    display: "grid",
-    gridTemplateColumns: "repeat(2,50%)",
-    padding: "10px",
+    gridTemplateColumns: "repeat(2, 1fr)",
   })}
+
   ${mobile({
     display: "flex",
     flexDirection: "column",
-    padding: "10px",
+    alignItems: "center",
   })}
 `;
 const ListProducts = ({ products, grid , center}) => {
   return (
     <Container>
-      <Wrapper grid={grid || 5} className={`${center && "j-center"}`}>
+      <Wrapper className={`${center && "j-center"}`}>
         {products.map((item) => {
           const sale = item.price - (item.discount / 100) * item.price;
           return (
