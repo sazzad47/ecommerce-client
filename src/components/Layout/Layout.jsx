@@ -7,10 +7,10 @@ const Layout = ({ children }) => {
     <div style={{minHeight: "100vh"}}>
       <Header />
       <Navbar />
-      <div style={{minHeight: "50vh", marginBottom: "2rem"}}>
+      <div style={{minHeight: "50vh"}}>
       {children}
       </div>
-      <div>
+      <div style={{marginTop: "2rem", backgroundColor: "#f5f7f7", paddingTop: "1rem"}}>
       <Footer />
       </div>
     </div>
