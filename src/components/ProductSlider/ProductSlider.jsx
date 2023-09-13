@@ -23,23 +23,7 @@ const Title = styled.div`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
-`;
-const TitleCon = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  padding: 15px;
-  border-radius: 0px 30px;
-  width: fit-content;
-  ${tablet({
-    padding: "10px",
-  })}
-  ${mobile({
-    padding: "10px",
-  })}
-
-display:flex;
+  margin: 1rem 0;
 `;
 
 const TitleText = styled.p`
@@ -52,7 +36,7 @@ const TitleText = styled.p`
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 15px;
   ${tablet({
     gridTemplateColumns: "repeat(2, 1fr)",
   })}
@@ -71,9 +55,7 @@ const ProductSlider = ({ lst, title, w }) => {
       <Wrapper>
         <Begin>
           <Title>
-            <TitleCon>
-              <TitleText>{title}</TitleText>
-            </TitleCon>
+            <TitleText>{title}</TitleText>
           </Title>
         </Begin>
         <ProductsContainer>

@@ -42,7 +42,6 @@ const Icon = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 30px;
   position: relative;
   &:hover ${Icon} {
     transform: translate(0px, 0px);
@@ -59,25 +58,27 @@ const Wrapper = styled.div`
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   align-items: center;
-  justify-contents: center;
+  justify-content: center;
   border-radius: 10px;
-  padding: 5px 0;
+  padding: 10px 0;
 `;
 
 const ImageDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-contents: center;
+  justify-content: center;
+  width: 100%;
   height: 200px;
+  position: relative;
   overflow: hidden;
   padding: 1rem;
 `;
 
 const Image = styled.img`
-  width: 100%;
   height: 100%;
   margin: auto;
-  object-fit: cover;
+  width: 100%;
+  object-fit: contain;
 `;
 const Sale = styled.div`
   width: 40px;
