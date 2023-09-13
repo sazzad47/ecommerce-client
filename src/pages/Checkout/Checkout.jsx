@@ -2,20 +2,11 @@ import React, { useState, createContext, useEffect } from "react";
 import { Layout } from "../../components";
 import { Stepper, Step } from "react-form-stepper";
 import { ConfirmAddress, OrderReview, PaymentMethods } from "./Screens";
-import styled from "styled-components";
-import { colorsPalette } from "../../constants";
 import { OrderHooks, CartHooks } from "../../Features";
 import { NotificationManager } from "react-notifications";
 import { Oval } from "react-loader-spinner";
 import { useNavigate } from "react-router";
-const Button = styled.button`
-  border: none;
-  outline: none;
-  background-color: ${colorsPalette[5]};
-  padding: 10px;
-  color: white;
-  cursor: pointer;
-`;
+import { Button } from "@mui/material";
 
 export const checkoutContext = createContext();
 
@@ -80,13 +71,13 @@ const Checkout = () => {
 
         <div className="d-flex j-center mt-3 g-10">
           {active > 0 && (
-            <Button onClick={() => setActive(active - 1)}>Back</Button>
+            <Button variant="contained" sx={{padding: "0.5rem 2rem"}}  onClick={() => setActive(active - 1)}>Back</Button>
           )}
           {active < 2 && (
-            <Button onClick={() => setActive(active + 1)}>Next</Button>
+            <Button variant="contained" sx={{padding: "0.5rem 2rem"}} onClick={() => setActive(active + 1)}>Next</Button>
           )}
           {active == 2 && (
-            <Button onClick={() => handleSubmitOrder()}>
+            <Button variant="contained" sx={{padding: "0.5rem 2rem"}} onClick={() => handleSubmitOrder()}>
               {CreateLoading ? (
                 <Oval color="white" width={20} height={20} />
               ) : (

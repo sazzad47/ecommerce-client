@@ -6,6 +6,7 @@ const CardContainer = styled.div`
   padding: 16px;
   margin: 10px;
   cursor: pointer;
+  border-radius: 10px;
   background-color: ${(props) => (props.selected ? "#e0e0e0" : "white")};
 `;
 

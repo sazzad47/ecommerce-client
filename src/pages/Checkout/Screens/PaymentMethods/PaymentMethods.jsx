@@ -19,7 +19,7 @@ const PaymentMethods = () => {
   return (
     <PaymentMethodsContainer className="d-flex-column g-15">
       <h2>Pay with your creidt card</h2>
-      <CreditCardInput />
+      <CreditCardInput fieldStyle={{ borderRadius: "10px", padding: "1rem" }} />
     </PaymentMethodsContainer>
   );
 };
