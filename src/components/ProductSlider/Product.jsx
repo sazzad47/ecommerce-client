@@ -50,7 +50,7 @@ const Container = styled.div`
   &:hover ${Info} {
     opacity: 1;
   }
-  width: 200px;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
@@ -70,10 +70,11 @@ const ImageDiv = styled.div`
   justify-contents: center;
   height: 200px;
   overflow: hidden;
+  padding: 1rem;
 `;
 
 const Image = styled.img`
-  width: auto;
+  width: 100%;
   height: 100%;
   margin: auto;
   object-fit: cover;
