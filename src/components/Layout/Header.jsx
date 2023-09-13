@@ -28,6 +28,7 @@ const Logo = styled.h3`
 
 const Container = styled.div`
   background-color: ${colorsPalette["4"]};
+  max-width: 100%;
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
