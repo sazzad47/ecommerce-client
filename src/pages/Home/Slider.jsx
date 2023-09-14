@@ -39,12 +39,10 @@ const Wrapper = styled.div`
 `;
 
 const Slideer = ({ lst }) => {
+
   return (
     <Container>
       <Swiper
-        pagination={{
-          type: "progressbar",
-        }}
         loop={true}
         navigation={true}
         modules={[Pagination, Navigation]}
