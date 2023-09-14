@@ -59,7 +59,6 @@ const All = styled.div`
   align-items: center;
   cursor: pointer;
   position: relative;
-  border-right: 1px solid rgb(226, 229, 241);
   &:hover ${OnHoverAll} {
     display: flex;
   }
