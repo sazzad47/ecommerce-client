@@ -11,7 +11,8 @@ const Container = styled.div`
   padding: 0 1rem;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div` 
+  width: 160px;
   display: flex;
   ${mobile({
     flexDirection: "column",
@@ -52,18 +53,16 @@ const OnHoverAll = styled.div`
   })}
 `;
 
-const All = styled.div`
-  flex: 1.2;
+const All = styled.div` 
   display: flex;
   justify-content: start;
   align-items: center;
   cursor: pointer;
   position: relative;
+  border-right: 1px solid rgb(226, 229, 241);
   &:hover ${OnHoverAll} {
     display: flex;
   }
-  border-right: 1px solid rgb(226, 229, 241);
-
   ${laptop({
     flex: "2",
   })}
@@ -89,6 +88,7 @@ const MainLink = styled.p`
   font-size: 15px;
   font-weight: bold;
   color: ${colorsPalette["4"]};
+ 
 `;
 
 
@@ -104,7 +104,7 @@ const Navbar = ({ categories }) => {
   return (
     <Container>
       <Wrapper>
-        <All>
+        <All >
           <MainLink>{isLoading ? "Loading . . ." : "ALL CATEGORIES"}</MainLink>
           <ExpandCircleDown
             sx={{
@@ -114,6 +114,7 @@ const Navbar = ({ categories }) => {
             }}
           />
           <OnHoverAll
+        
             h={"45px"}
             onMouseLeave={() => {
               SetShow(false);
