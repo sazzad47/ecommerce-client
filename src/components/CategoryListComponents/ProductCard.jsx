@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colorsPalette, currencySymbol } from "../../constants";
+import { currencySymbol } from "../../constants";
 import { mobile, tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 import { CartHooks } from "../../Features";
@@ -45,7 +45,8 @@ const TitleDiv = styled.div`
 `;
 
 const LinkToGO = {
-  fontSize: "12px",
+  fontSize: "20px",
+  fontWeight: "bold",
   color: "black",
   textDecoration: "none",
   transition: "all 0.3s ease-in-out",
