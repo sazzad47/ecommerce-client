@@ -160,7 +160,7 @@ const Main = () => {
         </div>
       </DisplayFilter>
       {count ? (
-        <PaginationDiv className="d-flex j-center">
+        <PaginationDiv style={{marginTop: "1rem"}} className="d-flex j-center">
           <Pagination
             count={Math.ceil(count / PAGINATION_LIMIT)}
             variant="outlined"
