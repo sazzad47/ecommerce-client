@@ -35,9 +35,7 @@ const ImgSelected = styled.img`
   max-height 100%;
 `;
 
-
-const Pimages = ({selected}) => {
- 
+const Pimages = ({ selected }) => {
   return (
     <Container>
       <Wrapper>

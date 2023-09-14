@@ -42,7 +42,7 @@ const PTabs = () => {
           </DescriptionDiv>
         </TabPanel>
         <TabPanel>
-          <div style={{ padding: "0px 50px" }}>
+          <div style={{ padding: "0px" }}>
             <h2>Specifications</h2>
             <div className="w-100 d-flex fl-wrap g-20">
               <div className="w-48 d-flex-column proptable">

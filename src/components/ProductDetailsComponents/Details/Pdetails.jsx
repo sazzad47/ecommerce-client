@@ -25,7 +25,7 @@ const QuantityDiv = styled.div`
     flexDirection: "column",
     alignItems: "center",
   })}
-`
+`;
 const ProductName = styled.p`
   font-weight: 900;
   font-size: 30px;
@@ -88,7 +88,7 @@ const OneImage = styled.div`
   }
 `;
 
-const Pdetails = ({selected, setSelected}) => {
+const Pdetails = ({ selected, setSelected }) => {
   const { productData } = useContext(ProductContext);
 
   const [quantity, setQuantity] = useState(productData?.min_order);
@@ -155,7 +155,7 @@ const Pdetails = ({selected, setSelected}) => {
             </Button>
           </Actions>
         </div>
-          <SliderDiv c={"transparent"}>
+        <SliderDiv c={"transparent"}>
           {React.Children.toArray(
             productData?.images.map((img) => {
               return (
@@ -171,7 +171,6 @@ const Pdetails = ({selected, setSelected}) => {
           )}
         </SliderDiv>
       </Wrapper>
-      
     </Container>
   );
 };
