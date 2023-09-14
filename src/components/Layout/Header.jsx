@@ -122,33 +122,44 @@ const Header = () => {
 
   const isMobile = useMediaQuery("(max-width:680px)");
   const isTablet = useMediaQuery("(max-width:1080px)");
-  const isLaptop = useMediaQuery("(max-width:1550px)");
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearch, setIsSearch] = useState(false);
 
   const menu = (
     <Menu
-      style={{ width: "120px" }}
-      className="d-flex-column a-center j-center pad-10"
+      style={{ width: "120px", boxShadow: "none", position: "relative" }}
+      className="d-flex-column a-start j-center pad-10"
     >
-      <DropItem key="1" className="pad-15 cursor_pointer">
-        <Link className="clear" to={"/profile"}>
-          Profile
-        </Link>
+      <DropItem
+        key="1"
+        style={{ borderBottom: "1px solid #0ee7eb", width: "100%" }}
+        className="cursor_pointer"
+      >
+        <div style={{ padding: "0.7rem" }}>
+          <Link className="clear" to={"/profile"}>
+            Profile
+          </Link>
+        </div>
       </DropItem>
-      <DropItem key="2" className="pad-15 cursor_pointer">
-        <Link to={"/myOrders"} className="clear">
-          My orders
-        </Link>
+      <DropItem
+        key="2"
+        style={{ borderBottom: "1px solid #0ee7eb", width: "100%" }}
+        className="cursor_pointer"
+      >
+        <div style={{ padding: "0.7rem" }}>
+          <Link to={"/myOrders"} className="clear">
+            My orders
+          </Link>
+        </div>
       </DropItem>
-      <hr className="divider" />
       <DropItem
         key="3"
-        className="pad-15 cursor_pointer"
+        style={{ width: "100%" }}
+        className="cursor_pointer"
         onClick={() => Logout()}
       >
-        Logout
+        <div style={{ padding: "0.7rem" }}>Logout</div>
       </DropItem>
     </Menu>
   );
@@ -220,7 +231,6 @@ const Header = () => {
                       <Search
                         sx={{
                           color: "white",
-                        
                         }}
                       />
                     </Tooltip>
@@ -235,7 +245,6 @@ const Header = () => {
                       <PersonAddAlt
                         sx={{
                           color: "white",
-                          
                         }}
                       />
                     </Tooltip>
@@ -250,7 +259,6 @@ const Header = () => {
                       <PersonOutline
                         sx={{
                           color: "white",
-                        
                         }}
                       />
                     </Tooltip>
