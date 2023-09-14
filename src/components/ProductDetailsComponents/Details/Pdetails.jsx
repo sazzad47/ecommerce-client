@@ -83,6 +83,7 @@ const OneImage = styled.div`
   cursor: pointer;
   opacity: 0.8;
   overflow: hidden;
+  border: 1px solid ${colorsPalette["4"]};
   &:hover {
     opacity: 1;
   }
@@ -160,7 +161,7 @@ const Pdetails = ({ selected, setSelected }) => {
             productData?.images.map((img) => {
               return (
                 <OneImage
-                  c={"#29f0e6"}
+                  c={"#transparent"}
                   className={img.image_url == selected && "opacity-1"}
                   onClick={() => handleClick(img.image_url)}
                 >

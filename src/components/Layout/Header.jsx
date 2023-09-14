@@ -133,7 +133,7 @@ const Header = () => {
     >
       <DropItem
         key="1"
-        style={{ borderBottom: "1px solid #0ee7eb", width: "100%" }}
+        style={{ borderBottom: `1px solid ${colorsPalette["4"]}`, width: "100%" }}
         className="cursor_pointer"
       >
         <div style={{ padding: "0.7rem" }}>
@@ -144,7 +144,7 @@ const Header = () => {
       </DropItem>
       <DropItem
         key="2"
-        style={{ borderBottom: "1px solid #0ee7eb", width: "100%" }}
+        style={{ borderBottom: `1px solid ${colorsPalette["4"]}`, width: "100%" }}
         className="cursor_pointer"
       >
         <div style={{ padding: "0.7rem" }}>

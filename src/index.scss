@@ -384,15 +384,15 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
   background-color: #964c47;
-  padding: 12px 24px;
+  padding: 8px 16px;
   border-radius: 100%;
   color: white;
 }
 .swiper-button-next::after {
-  font-size: 30px;
+  font-size: 20px;
 }
 .swiper-button-prev::after {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 778px) {
@@ -409,5 +409,6 @@ body {
 }
 
 .react-tabs__tab--selected {
-  background-color: #35fcfc;
+  background-color: #003366;
+  color: white;
 }
